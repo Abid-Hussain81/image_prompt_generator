@@ -188,9 +188,9 @@ export function ProfileHero({ onGenerateClick }: ProfileHeroProps) {
                 { number: '1000+', label: 'Images Created' },
                 { number: '∞', label: 'Creative Ideas' },
                 { number: '📅', label: 'Daily Inspiration' },
-              ].map((stat, index) => (
+              ].map((stat) => (
                 <motion.div
-                  key={index}
+                  key={stat.label}
                   whileHover={{ scale: 1.05 }}
                   className="text-center group cursor-pointer"
                 >

@@ -80,12 +80,12 @@ export function TrendingSection() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
-        {trendingPrompts.map((prompt, index) => (
+        {trendingPrompts.map((prompt) => (
           <motion.div
-            key={index}
+            key={prompt}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
+            transition={{ duration: 0.3 }}
             className="h-full"
           >
             <div className="p-2 sm:p-3 rounded-lg bg-dark-800/40 border border-glass-light backdrop-blur-sm h-full flex flex-col hover:border-glass-light/80 hover:bg-dark-800/60 transition-all">
