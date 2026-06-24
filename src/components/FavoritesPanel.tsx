@@ -9,7 +9,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Heart, X, Download } from 'lucide-react'
 import { usePromptStore } from '@/store/promptStore'
-import { copyToClipboard, downloadJSON, truncateText, formatDate } from '@/utils/formatting'
+import { copyToClipboard, formatDate } from '@/utils/formatting'
 import { formatCategoryName } from '@/utils/formatting'
 
 export function FavoritesPanel() {

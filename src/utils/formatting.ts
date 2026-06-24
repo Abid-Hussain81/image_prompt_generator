@@ -2,8 +2,6 @@
  * Formatting utilities
  */
 
-import type { Favorite } from '@/types'
-
 /**
  * Format category name for display
  */

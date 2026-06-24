@@ -5,7 +5,6 @@
 
 'use client'
 
-import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PromptCard } from './PromptCard'
 import { usePromptStore } from '@/store/promptStore'
@@ -25,7 +24,6 @@ export function PromptsGrid({
   isLoading,
 }: PromptsGridProps) {
   const { favorites, addFavorite, removeFavorite } = usePromptStore()
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   if (prompts.length === 0) {
     return (
@@ -70,8 +68,6 @@ export function PromptsGrid({
             <motion.div
               key={`${prompt}-${index}`}
               layout
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
             >
               <PromptCard
                 prompt={prompt}

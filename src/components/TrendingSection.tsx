@@ -10,11 +10,7 @@ import { motion } from 'framer-motion'
 import { TrendingUp, RefreshCw } from 'lucide-react'
 import { usePromptStore } from '@/store/promptStore'
 
-interface TrendingSectionProps {
-  isOffline?: boolean
-}
-
-export function TrendingSection({ isOffline = false }: TrendingSectionProps) {
+export function TrendingSection() {
   const { trendingPrompts, setTrendingPrompts, isLoading, setIsLoading } =
     usePromptStore()
   const [hasLoaded, setHasLoaded] = useState(false)

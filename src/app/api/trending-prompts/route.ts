@@ -3,7 +3,7 @@
  * Generates and caches trending prompts
  */
 
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { generateTrendingWithGemini } from '@/lib/geminiClient'
 import { generateOfflinePrompts } from '@/lib/offlinePromptEngine'
 import { cache, CACHE_KEYS, CACHE_TTL } from '@/utils/cache'

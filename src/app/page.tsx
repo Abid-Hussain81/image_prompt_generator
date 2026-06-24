@@ -31,7 +31,6 @@ export default function Home() {
     setError,
     isOffline,
     setIsOffline,
-    statistics,
     incrementPromptsGenerated,
     setCurrentCategory,
   } = usePromptStore()
@@ -100,7 +99,7 @@ export default function Home() {
 
       <main className="relative z-10 min-h-screen">
         {/* Profile Hero Section */}
-        <ProfileHero />
+        <ProfileHero onGenerateClick={generatePrompts} />
 
         {/* Main Content Section */}
         <motion.section
@@ -155,7 +154,7 @@ export default function Home() {
               className="lg:col-span-2 space-y-6 sm:space-y-8"
             >
               {/* Trending Section */}
-              <TrendingSection isOffline={isOffline} />
+              <TrendingSection />
 
               {/* Generated Prompts */}
               {currentPrompts.length > 0 && (
