@@ -1,6 +1,6 @@
 /**
  * ProfileHero Component
- * Redesigned to showcase Shahid Ahmed as an AI Art Enthusiast
+ * Redesigned to showcase Abid Hussain as an AI Art Enthusiast
  * Premium glassmorphism design with animated background
  */
 
@@ -90,7 +90,7 @@ export function ProfileHero({ onGenerateClick }: ProfileHeroProps) {
                 <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-amber-600/20 to-yellow-600/20">
                   <Image
                     src="/Abid_Shah.png"
-                    alt="Shahid Ahmed - AI Art Enthusiast"
+                    alt="Abid Hussain - AI Art Enthusiast"
                     width={400}
                     height={400}
                     priority
@@ -146,7 +146,7 @@ export function ProfileHero({ onGenerateClick }: ProfileHeroProps) {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-amber-200"
               >
-                Shahid Ahmed
+                Abid Hussain
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
