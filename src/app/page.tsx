@@ -90,7 +90,25 @@ export default function Home() {
   }
 
   if (!mounted) {
-    return null
+    return (
+      <>
+        <Header isOffline={false} />
+        <main className="relative z-10 min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="inline-block">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-12 h-12"
+              >
+                <div className="w-full h-full border-4 border-amber-500/20 border-t-amber-500 rounded-full" />
+              </motion.div>
+            </div>
+            <p className="mt-4 text-gray-300">Loading...</p>
+          </div>
+        </main>
+      </>
+    )
   }
 
   return (
