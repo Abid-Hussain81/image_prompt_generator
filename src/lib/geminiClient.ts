@@ -119,8 +119,8 @@ export async function generatePromptsWithGemini(
   }
 
   try {
-    // Use gemini-pro which is stable and available
-    const model = client.getGenerativeModel({ model: 'gemini-pro' })
+    // Use gemini-1.5-pro which works with free tier
+    const model = client.getGenerativeModel({ model: 'gemini-1.5-pro' })
 
     const categoryPrompt = categorySystemPrompts[request.category] || ''
 
@@ -211,8 +211,8 @@ export async function generateTrendingWithGemini(count: number): Promise<string[
   }
 
   try {
-    // Use gemini-pro which is stable and available
-    const model = client.getGenerativeModel({ model: 'gemini-pro' })
+    // Use gemini-1.5-pro which works with free tier
+    const model = client.getGenerativeModel({ model: 'gemini-1.5-pro' })
 
     const userPrompt = `Generate exactly ${count} unique, trending image prompts that are currently viral on social media (Instagram, TikTok, Pinterest).
 
