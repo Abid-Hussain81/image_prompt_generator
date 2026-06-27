@@ -141,7 +141,7 @@ Users can override defaults by explicitly requesting:
 │   │       ├── generate-prompts/    # Prompt generation API
 │   │       └── trending-prompts/    # Trending prompts API
 │   ├── components/
-│   │   ├── ProfileHero.tsx          # Shahid Ahmed hero section
+│   │   ├── ProfileHero.tsx          # Abid Hussain Shah hero section
 │   │   ├── ControlPanel.tsx         # Settings controls
 │   │   ├── PromptsGrid.tsx          # Prompt display grid
 │   │   ├── ExportPanel.tsx          # Export functionality
@@ -199,7 +199,7 @@ Users can override defaults by explicitly requesting:
 - ✅ Responsive design
 
 ### Creator Profile
-- ✅ Shahid Ahmed hero section
+- ✅ Abid Hussain Shah hero section
 - ✅ Beautiful profile image
 - ✅ Creator story and mission
 - ✅ Statistics display
@@ -296,7 +296,7 @@ npm start
 
 ## 📝 License & Credits
 
-- **Created by:** Shahid Ahmed - AI Art Enthusiast
+- **Created by:** Abid Hussain Shah - AI Art Enthusiast
 - **Powered by:** Google Gemini API
 - **Hosted on:** Vercel
 - **Built with:** Next.js + React + TypeScript

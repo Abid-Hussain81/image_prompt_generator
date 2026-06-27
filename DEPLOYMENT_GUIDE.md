@@ -99,7 +99,7 @@ You'll see a screen showing:
 ### 5.1 Visit Your App
 1. Click the **"Visit"** button or copy your Vercel URL
 2. Your app should load with:
-   - Hero section with Shahid Ahmed profile
+   - Hero section with Abid Hussain Shah profile
    - Control panel with generation settings
    - "Generate Today's Prompts" button working
    - All features functional
