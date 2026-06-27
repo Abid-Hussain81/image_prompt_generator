@@ -119,7 +119,8 @@ export async function generatePromptsWithGemini(
   }
 
   try {
-    const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' })
+    // Use gemini-pro which is stable and available
+    const model = client.getGenerativeModel({ model: 'gemini-pro' })
 
     const categoryPrompt = categorySystemPrompts[request.category] || ''
 
@@ -210,7 +211,8 @@ export async function generateTrendingWithGemini(count: number): Promise<string[
   }
 
   try {
-    const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' })
+    // Use gemini-pro which is stable and available
+    const model = client.getGenerativeModel({ model: 'gemini-pro' })
 
     const userPrompt = `Generate exactly ${count} unique, trending image prompts that are currently viral on social media (Instagram, TikTok, Pinterest).
 
