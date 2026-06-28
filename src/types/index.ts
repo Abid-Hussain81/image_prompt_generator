@@ -74,12 +74,15 @@ export interface Statistics {
 export interface OfflinePromptData {
   subjects: string[]
   environments: string[]
-  lighting: string[]
-  weather: string[]
+  poses: string[]
   cameras: string[]
   lenses: string[]
   compositions: string[]
   moods: string[]
   colorGrading: string[]
   photographyStyles: string[]
+  qualityTerms: string[]
+  facialQuality: string[]
+  lighting: string[]
+  weather: string[]
 }
