@@ -146,7 +146,7 @@ export function ProfileHero({ onGenerateClick }: ProfileHeroProps) {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-amber-200"
               >
-                Abid Hussain
+                Abid Hussain Shah
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
