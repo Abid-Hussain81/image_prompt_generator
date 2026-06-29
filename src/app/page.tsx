@@ -3,21 +3,21 @@
  * Main application interface
  */
 
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { AlertCircle } from 'lucide-react'
-import { Header } from '@/components/Header'
-import { ProfileHero } from '@/components/ProfileHero'
-import { ControlPanel } from '@/components/ControlPanel'
-import { PromptsGrid } from '@/components/PromptsGrid'
-import { TrendingSection } from '@/components/TrendingSection'
-import { StatisticsPanel } from '@/components/StatisticsPanel'
-import { ExportPanel } from '@/components/ExportPanel'
-import { FavoritesPanel } from '@/components/FavoritesPanel'
-import { usePromptStore } from '@/store/promptStore'
-import type { PromptSettings } from '@/types'
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { AlertCircle } from "lucide-react";
+import { Header } from "@/components/Header";
+import { ProfileHero } from "@/components/ProfileHero";
+import { ControlPanel } from "@/components/ControlPanel";
+import { PromptsGrid } from "@/components/PromptsGrid";
+import { TrendingSection } from "@/components/TrendingSection";
+import { StatisticsPanel } from "@/components/StatisticsPanel";
+import { ExportPanel } from "@/components/ExportPanel";
+import { FavoritesPanel } from "@/components/FavoritesPanel";
+import { usePromptStore } from "@/store/promptStore";
+import type { PromptSettings } from "@/types";
 
 export default function Home() {
   const {
@@ -33,61 +33,70 @@ export default function Home() {
     setIsOffline,
     incrementPromptsGenerated,
     setCurrentCategory,
-  } = usePromptStore()
+  } = usePromptStore();
 
-  const [mounted, setMounted] = useState(false)
-  const [regeneratingIndex, setRegeneratingIndex] = useState<number | null>(null)
+  const [mounted, setMounted] = useState(false);
+  const [regeneratingIndex, setRegeneratingIndex] = useState<number | null>(
+    null,
+  );
 
   // Hydration
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   const generatePrompts = async () => {
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
 
     try {
-      const response = await fetch('/api/generate-prompts', {
-        method: 'POST',
+      const response = await fetch("/api/generate-prompts", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(settings),
-      })
+      });
 
-      const data = await response.json()
+      let data: any = null;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        const text = await response.text();
+        console.error("Generate prompts invalid JSON response:", text);
+        throw new Error("Invalid JSON response from server");
+      }
 
-      if (data.success) {
-        setCurrentPrompts(data.prompts)
-        incrementPromptsGenerated(data.prompts.length)
-        setCurrentCategory(settings.category)
-        setIsOffline(data.offline || false)
-        setError(null)
+      if (data?.success) {
+        setCurrentPrompts(data.prompts);
+        incrementPromptsGenerated(data.prompts.length);
+        setCurrentCategory(settings.category);
+        setIsOffline(data.offline || false);
+        setError(null);
       } else {
-        setError(data.error || 'Failed to generate prompts')
+        setError(data?.error || "Failed to generate prompts");
       }
     } catch (err) {
-      setError('Failed to connect. Check your internet connection.')
-      console.error('Generate error:', err)
+      setError("Failed to connect. Check your internet connection.");
+      console.error("Generate error:", err);
     } finally {
-      setIsLoading(false)
-      setRegeneratingIndex(null)
+      setIsLoading(false);
+      setRegeneratingIndex(null);
     }
-  }
+  };
 
   const regenerateSimilar = async (index: number) => {
-    setRegeneratingIndex(index)
-    await generatePrompts()
-  }
+    setRegeneratingIndex(index);
+    await generatePrompts();
+  };
 
   const handleSettingsChange = (key: string, value: any) => {
     const updatedSettings: PromptSettings = {
       ...settings,
       [key]: value,
-    }
-    updateSettings(updatedSettings)
-  }
+    };
+    updateSettings(updatedSettings);
+  };
 
   if (!mounted) {
     return (
@@ -108,7 +117,7 @@ export default function Home() {
           </div>
         </main>
       </>
-    )
+    );
   }
 
   return (
@@ -136,9 +145,13 @@ export default function Home() {
             >
               <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
               <div className="min-w-0">
-                <p className="font-medium text-red-300 text-sm sm:text-base break-words">{error}</p>
+                <p className="font-medium text-red-300 text-sm sm:text-base break-words">
+                  {error}
+                </p>
                 <p className="text-xs sm:text-sm text-red-400/70">
-                  {isOffline ? 'Using offline prompt generator' : 'Please try again'}
+                  {isOffline
+                    ? "Using offline prompt generator"
+                    : "Please try again"}
                 </p>
               </div>
             </motion.div>
@@ -161,7 +174,10 @@ export default function Home() {
 
               <StatisticsPanel />
 
-              <ExportPanel prompts={currentPrompts} category={settings.category} />
+              <ExportPanel
+                prompts={currentPrompts}
+                category={settings.category}
+              />
             </motion.div>
 
             {/* Right Content - Prompts */}
@@ -224,10 +240,11 @@ export default function Home() {
             AI Prompt Forge © 2024. Powered by Google Gemini API.
           </p>
           <p className="text-xs text-gray-600 mt-2">
-            Generate professional image prompts optimized for AI image generation.
+            Generate professional image prompts optimized for AI image
+            generation.
           </p>
         </motion.footer>
       </main>
     </>
-  )
+  );
 }

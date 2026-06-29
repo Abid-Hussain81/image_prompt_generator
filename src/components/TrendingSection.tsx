@@ -3,48 +3,56 @@
  * Displays today's trending prompts
  */
 
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { TrendingUp, RefreshCw } from 'lucide-react'
-import { usePromptStore } from '@/store/promptStore'
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { TrendingUp, RefreshCw } from "lucide-react";
+import { usePromptStore } from "@/store/promptStore";
 
 export function TrendingSection() {
   const { trendingPrompts, setTrendingPrompts, isLoading, setIsLoading } =
-    usePromptStore()
-  const [hasLoaded, setHasLoaded] = useState(false)
+    usePromptStore();
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   const loadTrendingPrompts = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const response = await fetch('/api/trending-prompts', {
+      const response = await fetch("/api/trending-prompts", {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-      })
-      const data = await response.json()
+      });
 
-      if (data.success && data.prompts && data.prompts.length > 0) {
-        setTrendingPrompts(data.prompts)
+      let data: any = null;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        const text = await response.text();
+        console.error("Trending prompts invalid JSON response:", text);
+        return;
+      }
+
+      if (data?.success && data.prompts && data.prompts.length > 0) {
+        setTrendingPrompts(data.prompts);
       }
     } catch (error) {
-      console.error('Trending error:', error)
+      console.error("Trending error:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   // Load trending on mount
   useEffect(() => {
     if (!hasLoaded) {
-      loadTrendingPrompts()
-      setHasLoaded(true)
+      loadTrendingPrompts();
+      setHasLoaded(true);
     }
-  }, [hasLoaded])
+  }, [hasLoaded]);
 
   if (trendingPrompts.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -108,5 +116,5 @@ export function TrendingSection() {
         Updates every 24 hours
       </p>
     </motion.section>
-  )
+  );
 }
