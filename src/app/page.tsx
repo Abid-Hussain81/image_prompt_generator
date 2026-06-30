@@ -45,9 +45,17 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  const scrollToPrompts = () => {
+    const el = document.getElementById("prompts-section") || document.getElementById("generator-section");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   const generatePrompts = async () => {
     setIsLoading(true);
     setError(null);
+    scrollToPrompts();
 
     try {
       const response = await fetch("/api/generate-prompts", {
@@ -73,6 +81,10 @@ export default function Home() {
         setCurrentCategory(settings.category);
         setIsOffline(data.offline || false);
         setError(null);
+        setTimeout(() => {
+          const el = document.getElementById("prompts-section");
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
       } else {
         setError(data?.error || "Failed to generate prompts");
       }
@@ -130,6 +142,7 @@ export default function Home() {
 
         {/* Main Content Section */}
         <motion.section
+          id="generator-section"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -193,6 +206,7 @@ export default function Home() {
               {/* Generated Prompts */}
               {currentPrompts.length > 0 && (
                 <motion.div
+                  id="prompts-section"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
